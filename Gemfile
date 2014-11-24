@@ -3,6 +3,8 @@ ruby '2.1.3'
 
 
 gem 'rails', '4.1.6'
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'autoprefixer-rails'
 
 gem 'minitest'
 
@@ -23,6 +25,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'spring',        group: :development
+gem 'awesome_print', :group => :development
 
 group :doc do
   gem 'sdoc', '0.4.1', require: false
