@@ -1,44 +1,61 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
-require 'rspec/rails'
-require 'rspec/autorun'
+require 'spec_helper'
 
-# Requires supporting ruby files with custom matchers and macros, etc,
-# in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+describe "Static pages" do
 
-# Checks for pending migrations before tests are run.
-# If you are not using ActiveRecord, you can remove this line.
-ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
+  describe "Home page" do
 
-RSpec.configure do |config|
-  # ## Mock Framework
-  #
-  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
-  # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
+    it "should have the h1 'Sample App'" do
+      visit root_path
+      expect(page).to have_content('Sample App')
+    end
 
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+    it "should have the base title" do
+      visit root_path
+      expect(page).to have_title("Ruby on Rails Tutorial Sample App")
+    end
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
+    it "should not have a custom page title" do
+      visit root_path
+      expect(page).not_to have_title('| Home')
+    end
+  end
 
-  # If true, the base class of anonymous controllers will be inferred
-  # automatically. This will be the default behavior in future versions of
-  # rspec-rails.
-  config.infer_base_class_for_anonymous_controllers = false
+  describe "Help page" do
 
-  # Run specs in random order to surface order dependencies. If you find an
-  # order dependency and want to debug it, you can fix the order by providing
-  # the seed, which is printed after each run.
-  #     --seed 1234
-  config.order = "random"
+    it "should have the h1 'Help'" do
+      visit help_path
+      expect(page).to have_content('Help')
+    end
 
-  config.include Capybara::DSL
+    it "should have the title 'Help'" do
+      visit help_path
+      expect(page).to have_title("Ruby on Rails Tutorial Sample App | Help")
+    end
+  end
+
+  describe "About page" do
+
+    it "should have the h1 'About Us'" do
+      visit about_path
+      expect(page).to have_content('About Us')
+    end
+
+    it "should have the title 'About Us'" do
+      visit about_path
+      expect(page).to have_title("Ruby on Rails Tutorial Sample App | About Us")
+    end
+  end
+
+  describe "Contact page" do
+
+    it "should have the content 'Contact'" do
+      visit contact_path
+      expect(page).to have_content('Contact')
+    end
+
+    it "should have the title 'Contact'" do
+      visit contact_path
+      expect(page).to have_title("Ruby on Rails Tutorial Sample App | Contact")
+    end
+  end
 end

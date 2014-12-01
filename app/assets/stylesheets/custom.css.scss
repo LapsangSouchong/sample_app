@@ -2,6 +2,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/* mixins, variables, etc. */
+
+$grayMediumLight: #eaeaea;
+
 /* universal */
 
 html {
@@ -47,7 +51,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #999;
+  color: $gray-light;
 }
 
 p {
@@ -67,11 +71,10 @@ p {
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
-}
-
-#logo:hover {
-  color: #fff;
-  text-decoration: none;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
 }
 
 /* footer */
@@ -80,27 +83,22 @@ p {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
-  color: #999;
-}
-
-#footer a {
-  color: #555;
-}
-
-#footer a:hover {
-  color: #222;
-}
-
-#footer small {
-  float: left;
-}
-
-#footer ul {
-  float: right;
-  list-style: none;
-}
-
-#footer ul li {
-  float: left;
-  margin-left: 10px;
+  color: $gray-light;
+  a {
+    color: gray;
+    &:hover {
+      color: $gray-darker;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
 }
